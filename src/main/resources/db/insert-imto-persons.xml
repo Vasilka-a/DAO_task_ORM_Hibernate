@@ -1,0 +1,20 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="insert-persoms" author="Nastya B">
+        <sql>
+            insert into persons (name, surname, age, phone_number, city_of_living)
+            values ('Анна', 'Иванова', 25, 89026588793, 'Москва'),
+                   ('Михаил', 'Федоров', 38, 89092568974, 'Самара'),
+                   ('Ольга', 'Ромашкина', 31, 89270256324, 'Москва'),
+                   ('Иван', 'Матвеев', 41, 89367480302, 'Казань'),
+                   ('Марина', 'Сидорова', 26, 89250014536, 'Омск'),
+                   ('Ярослав', 'Соболев', 29, 89254789652, 'Москва'),
+                   ('Александр', 'Петров', 34, 89023695847, 'Санкт-Петербург'),
+                   ('Татьяна', 'Смоленцева', 43, 89063562697, 'Тверь');
+
+        </sql>
+    </changeSet>
+</databaseChangeLog>

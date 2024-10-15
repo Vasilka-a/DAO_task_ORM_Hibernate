@@ -1,0 +1,19 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="create_persons_table" author="Nastya B">
+        <sql>
+            create table persons
+            (
+                name    text not null,
+                surname text not null,
+                age     integer not null ,
+                phone_number text not null ,
+                city_of_living text not null,
+                PRIMARY KEY (name,surname,age)
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

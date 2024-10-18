@@ -5,6 +5,4 @@
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
     <include file="db/create-changeset-persons.xml"/>
     <include file="db/insert-imto-persons.xml"/>
-    <include file="db/change-column-persons.xml"/>
-
 </databaseChangeLog>

@@ -1,4 +1,4 @@
-package com.example.dao_hibernate;
+package com.example.dao_hibernate.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;

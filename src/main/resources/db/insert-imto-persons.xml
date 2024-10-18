@@ -5,7 +5,7 @@
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
     <changeSet id="insert-persoms" author="Nastya B">
         <sql>
-            insert into persons (name, surname, age, phone_number, city_of_living)
+            insert into persons (name, surname, age, phone_number, city)
             values ('Анна', 'Иванова', 25, 89026588793, 'Москва'),
                    ('Михаил', 'Федоров', 38, 89092568974, 'Самара'),
                    ('Ольга', 'Ромашкина', 31, 89270256324, 'Москва'),

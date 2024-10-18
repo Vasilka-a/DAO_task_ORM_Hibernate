@@ -21,5 +21,5 @@ public class Persons {
     private String phone_number;
 
     @Column(nullable = false)
-    private String city_of_living;
+    private String city;
 }

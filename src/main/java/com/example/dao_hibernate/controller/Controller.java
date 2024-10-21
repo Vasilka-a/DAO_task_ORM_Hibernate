@@ -15,13 +15,8 @@ public class Controller {
     private final Repository repository;
 
     @GetMapping("/hello")
-    public String hello () {
-        return "form.html";
-    }
-
-    @PostMapping("/persons")
-    public Persons createPerson(@RequestBody Persons persons) {
-        return repository.save(persons);
+    public String hello() {
+        return "Hello!";
     }
 
     @GetMapping("/persons/by-city")

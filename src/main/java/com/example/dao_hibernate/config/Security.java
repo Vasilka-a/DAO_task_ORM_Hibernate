@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,29 +22,30 @@ public class Security {
     }
 
     @Bean
-    public UserDetailsService userDetailsService() {
-        UserDetails admin = User.withUsername("Alexey")
-                .password(passwordEncoder().encode("ADMIN")).roles("ADMIN").build();
+    public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
+        User.UserBuilder users = User.builder().passwordEncoder(passwordEncoder()::encode);
+        InMemoryUserDetailsManager userDetailsManager = new InMemoryUserDetailsManager();
+        userDetailsManager.createUser(users.username("admin")
+                .password("admin")
+                .roles("DELETE")
+                .build());
+        userDetailsManager.createUser(users.username("manager")
+                .password("manager")
+                .roles("WRITE")
+                .build());
+        userDetailsManager.createUser(users.username("user")
+                .password("user")
+                .roles("READ")
+                .build());
 
-        UserDetails manager = User.withUsername("Anna")
-                .password(passwordEncoder().encode("MANAGER")).roles("MANAGER").build();
-
-        UserDetails hr = User.withUsername("Maria")
-                .password(passwordEncoder().encode("RECRUITER")).roles("HR").build();
-
-        return new InMemoryUserDetailsManager(admin, manager, hr);
+        return userDetailsManager;
     }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((request) -> request
-                .requestMatchers("/hello").permitAll()
-                .requestMatchers("/persons/by-city").hasRole("HR")
-                .requestMatchers("/persons/by-age").hasRole("HR")
-                .requestMatchers("/persons/by-name-surname").hasRole("MANAGER")
-                .requestMatchers("/persons/delete-person").hasRole("ADMIN")
-                .anyRequest().authenticated()
-        ).formLogin(withDefaults());
+                .anyRequest().authenticated());
+        http.formLogin(withDefaults());
         return http.build();
     }
 }
